@@ -40,7 +40,7 @@ The team behind TuskVector claims they'll integrate vector database functionalit
 
 ## Getting Started 🚀
 
-If you want to give TuskVector a spin, check out the [API Documentation](/docs). It should tell you everything you need to know about how to use the platform and its features. 📚
+If you want to give TuskVector a spin, check out the Swagger API documentation under /docs path. It should tell you everything you need to know about how to use the platform and its features. 📚
 
 Whether you're a seasoned developer or a newbie, TuskVector aims to make your development process a bit less painful. No promises, though. 💪
 
