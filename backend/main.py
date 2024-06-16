@@ -1,20 +1,26 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, Depends
+from items_router import router as items_router
+from database import get_db, Item
 
 app = FastAPI()
 
-class Item(BaseModel):
-    name: str
-    price: float
+# Add Swagger UI configuration
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="API",
+        version="1.0.0",
+        description="This is the API description.",
+        routes=app.routes,
+    )
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+app.include_router(items_router)
+app = FastAPI(docs_url="/docs", openapi_url="/api/openapi.json")
 
-@app.post("/items/")
-def create_item(item: Item):
-    return item
-
-@app.get("/api/data")
-def get_data():
-    return {"message": "Hello from FastAPI backend!"}
+@app.get("/api/items")
+def get_items(db=Depends(get_db)):
+    items = db.exec(select(Item)).all()
+    return items
