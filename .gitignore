@@ -1,0 +1,6 @@
+# Backend
+backend/**pycache**/
+backend/venv/
+
+# Frontend
+frontend/node_modules/
