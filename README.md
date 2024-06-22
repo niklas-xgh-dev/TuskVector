@@ -1,10 +1,9 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/pgvector-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="pgvector">
+  <img src="https://img.shields.io/badge/SQLAlchemy%20⚗️-2B5B84?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
   <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI">
   <a href="https://docs.pydantic.dev/latest/contributing/#badges"><img src="https://img.shields.io/endpoint?style=for-the-badge&url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json" alt="Pydantic v2"></a>
-  <img src="https://img.shields.io/badge/SQLAlchemy%20⚗️-2B5B84?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
   <img src="https://img.shields.io/badge/htmx-%23000000.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBkPSJNMTcwLjQgODUuNGwtNDIuNCA0Mi40LTQyLjQtNDIuNEw2NCA5Ni41bDQyLjQgNDIuNC00Mi40IDQyLjQgMjEuMiAyMS4yIDQyLjQtNDIuNCA0Mi40IDQyLjQgMjEuMi0yMS4yLTQyLjQtNDIuNCA0Mi40LTQyLjR6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="HTMX">
 </div>
 
@@ -22,7 +21,7 @@ TuskVector is powered by a mix of technologies:
 - ⚡ FastAPI for building APIs (gotta go fast!)
 - 🛡️ Pydantic for data validation (because who doesn't love strict typing?)
 - 🧪 SQLAlchemy for database integration (SQL is still cool, right?)
-- 🌑 HTMX for the frontend (because apparently, that's a thing now)
+- 🌑 HTMX for the frontend to dodge JavaScript (because apparently, that's a thing now)
 
 ## Current Features 🎉
 
