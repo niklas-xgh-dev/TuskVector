@@ -1,14 +1,9 @@
-# database.py
-from sqlmodel import SQLModel, Field
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
-import logging
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
-# Load environment variables
 from dotenv import load_dotenv
+
 load_dotenv()
 
 DB_HOST = os.getenv("DB_HOST")
@@ -22,11 +17,16 @@ engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+Base = declarative_base()
+
+class ItemDB(Base):
+    __tablename__ = "item"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    price = Column(Float)
+
 def create_tables():
-    SQLModel.metadata.create_all(engine)
-   # Call this function when your application starts
-    if __name__ == "__main__":
-        create_tables()
+    Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()
@@ -34,9 +34,3 @@ def get_db():
         yield db
     finally:
         db.close()
-
-class Item(SQLModel, table=True):
-    __tablename__ = "item"
-    id: int | None = Field(default=None, primary_key=True)
-    name: str
-    price: float

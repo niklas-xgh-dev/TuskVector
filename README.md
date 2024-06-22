@@ -21,7 +21,7 @@ TuskVector is powered by a mix of technologies:
 - 🧬 pgvector for vector database functionality (coming soon, or so they say)
 - ⚡ FastAPI for building APIs (gotta go fast!)
 - 🛡️ Pydantic for data validation (because who doesn't love strict typing?)
-- 🆕 SQLModel for database integration (SQL is still cool, right?)
+- 🧪 SQLAlchemy for database integration (SQL is still cool, right?)
 - 🌑 HTMX for the frontend (because apparently, that's a thing now)
 
 ## Current Features 🎉

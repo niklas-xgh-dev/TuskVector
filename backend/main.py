@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from items_router import router as items_router
-from database import get_db, Item, create_tables
+from database import create_tables
 
 create_tables()
 
