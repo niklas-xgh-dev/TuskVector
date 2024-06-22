@@ -16,8 +16,7 @@ TuskVector is an API platform built to handle your data organization and retriev
 TuskVector is powered by a mix of technologies:
 
 - 🐍 Python for the backend (no surprises there)
-- 🐘 PostgreSQL as the database (elephants and databases, get it?)
-- 🧬 pgvector for vector database functionality (coming soon, or so they say)
+- 🐘 pgvector for PostgreSQL vector database functionality (elephants, vectors and databases, get it?)
 - ⚡ FastAPI for building APIs (gotta go fast!)
 - 🛡️ Pydantic for data validation (because who doesn't love strict typing?)
 - 🧪 SQLAlchemy for database integration (SQL is still cool, right?)
