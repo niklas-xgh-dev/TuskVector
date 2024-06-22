@@ -20,8 +20,6 @@ app.add_middleware(
 
 app.include_router(items_router, prefix="/api")
 
-app.include_router(items_router, prefix="/api")
-
 # Get the directory of the current file (main.py)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # Get the parent directory (project root)
