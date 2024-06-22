@@ -1,7 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Form
+from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from database import get_db, ItemDB
-from schemas import ItemCreate, ItemResponse
+from schemas import ItemCreate, ItemResponse, APIKeyRequest, APIKeyResponse
+import secrets
 
 router = APIRouter()
 
@@ -30,3 +32,13 @@ def delete_item(item_id: int, db: Session = Depends(get_db)):
         return {"message": "Item deleted successfully"}
     else:
         return {"message": "Item not found"}
+    
+@router.post("/generate_api_key", response_class=HTMLResponse, include_in_schema=False)
+async def generate_api_key(name: str = Form(...), email: str = Form(...)):
+    api_key = f"gv_{secrets.token_urlsafe(16)}"
+    
+    html_response = f"""
+    <p>Your API Key: <span class="api-key">{api_key}</span></p>
+    <p>Keep this key secure and don't share it publicly!</p>
+    """
+    return HTMLResponse(content=html_response)

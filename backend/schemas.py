@@ -9,3 +9,10 @@ class ItemResponse(ItemCreate):
 
     class Config:
         orm_mode = True
+
+class APIKeyRequest(BaseModel):
+    name: str
+    email: str
+
+class APIKeyResponse(BaseModel):
+    api_key: str
