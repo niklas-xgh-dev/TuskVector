@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from database import get_db, ItemDB, ApiKeyDB
-from schemas import ItemCreate, ItemResponse, APIKeyRequest, APIKeyResponse
+from schemas import ItemCreate, ItemResponse
 import secrets
 from datetime import datetime
 
