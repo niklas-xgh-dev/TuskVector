@@ -1,8 +1,9 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
+from pgvector.sqlalchemy import Vector
 
 load_dotenv()
 
@@ -35,6 +36,14 @@ class ApiKeyDB(Base):
     source_ip = Column(String(45), unique=True, nullable=False, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_used_at = Column(DateTime(timezone=True))
+
+class TextEmbedding(Base):
+    __tablename__ = "text_embeddings"
+
+    id = Column(Integer, primary_key=True, index=True)
+    text = Column(Text, nullable=False)
+    embedding = Column(Vector(1536))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 def create_tables():
     Base.metadata.create_all(bind=engine)

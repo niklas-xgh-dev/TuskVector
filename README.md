@@ -9,7 +9,7 @@
 
 # TuskVector - API Platform 🐘
 
-TuskVector is an API platform built to handle your data organization and retrieval needs. Why "TuskVector"? Well, just like an elephant's tusk, it's strong, reliable, and gets the job done. 📊
+TuskVector is an API platform built to handle your data organization and retrieval needs. Why "TuskVector"? Well, just like an elephant's tusk, it's strong, reliable, and gets the job done. Plus, it now remembers things almost as well as an elephant. Almost. 📊🧠
 
 ## Tech Stack 🛠️
 
@@ -21,25 +21,29 @@ TuskVector is powered by a mix of technologies:
 - 🛡️ Pydantic for data validation (because who doesn't love strict typing?)
 - 🧪 SQLAlchemy for database integration (SQL is still cool, right?)
 - 🌑 HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
+- 🤖 OpenAI for embeddings and LLM queries (because why think when AI can do it for you?)
 
 ## Current Features 🎉
+TuskVector now offers a bunch of API endpoints to manage your items and queries:
 
-TuskVector offers a few API endpoints to manage your items:
+- 🔍 Get an item by its ID using GET /api/items/{item_id}
+- ➕ Create a new item with POST /api/items
+- 🗑️ Delete an item by its ID using DELETE /api/items/{item_id}
+- 📥 Embed and store facts with POST /api/embed_text
+- 🔎 Find similar facts using POST /api/similarity_search
+- 🧠 Query an LLM with facts as context using POST /api/query
 
-- 🔍 Get an item by its ID using `GET /items/{item_id}`
-- ➕ Create a new item with `POST /items`
-- 🗑️ Delete an item by its ID using `DELETE /items/{item_id}`
+We've gone from "nothing groundbreaking" to "kinda cool", so that's progress, right?
 
-Nothing groundbreaking, but hey, it works.
+## Vector Magic ✨
 
-## Future Plans 🔮
-
-The team behind TuskVector claims they'll integrate vector database functionality using pgvector soon. Apparently, this will allow for fast similarity searches and improve data querying capabilities. We'll believe it when we see it. 🚀
+Remember when we said we'd integrate vector database functionality? Well, we actually did it! TuskVector now uses pgvector for fast similarity searches. It's like finding a needle in a haystack, if the needle was a piece of text and the haystack was your database. 🧭
 
 ## Getting Started 🚀
 
-If you want to give TuskVector a spin, check out the Swagger API documentation under /docs path. It should tell you everything you need to know about how to use the platform and its features. 📚
+If you want to give TuskVector a spin, check out the Swagger API documentation under /docs path. It should tell you everything you need to know about how to use the platform and its features. Or you could just guess and hope for the best. Your choice. 📚
 
-Whether you're a seasoned developer or a newbie, TuskVector aims to make your development process a bit less painful. No promises, though. 💪
+## Future Plans 🔮
 
-Happy coding, I guess. 💻🐘
+The team behind TuskVector is thinking about adding more features. They're not sure what yet, but we're not holding our breath. 😉
+May your queries be fast and your embeddings be meaningful. 💻🐘

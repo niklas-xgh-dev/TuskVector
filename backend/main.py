@@ -3,6 +3,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from items_router import router as items_router
+from embeddings_router import router as embeddings_router
+from llm_router import router as llm_router
 from database import create_tables
 import os
 
@@ -19,13 +21,12 @@ app.add_middleware(
 )
 
 app.include_router(items_router, prefix="/api")
+app.include_router(embeddings_router, prefix="/api")
+app.include_router(llm_router, prefix="/api")
 
-# Get the directory of the current file (main.py)
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# Get the parent directory (project root)
 project_root = os.path.dirname(current_dir)
 
-# Serve static files from the project root
 app.mount("/", StaticFiles(directory=project_root), name="static")
 
 @app.get("/", include_in_schema=False)
