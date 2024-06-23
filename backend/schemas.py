@@ -11,7 +11,6 @@ class ItemResponse(ItemCreate):
         orm_mode = True
 
 class APIKeyRequest(BaseModel):
-    name: str
     email: str
 
 class APIKeyResponse(BaseModel):

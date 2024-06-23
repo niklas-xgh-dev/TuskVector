@@ -32,8 +32,9 @@
         <div class="section">
             <h2>Get Your API Key</h2>
             <p>To start using the TuskVector API, you'll need an API key. Register below to get your key instantly!</p>
-            <form hx-post="/api/generate_api_key" hx-target="#api-key-result" hx-swap="innerHTML">
-                <input type="text" name="name" placeholder="Your Name" required>
+            <form hx-post="/api/generate_api_key" 
+                  hx-target="#api-key-result" 
+                  hx-swap="innerHTML">
                 <input type="email" name="email" placeholder="Your Email" required>
                 <button type="submit">Get API Key</button>
             </form>

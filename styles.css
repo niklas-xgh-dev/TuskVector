@@ -96,3 +96,12 @@ button:hover {
 .ref-link:hover {
     background-color: #000000;
 }
+.htmx-indicator {
+    display: none;
+}
+.htmx-request .htmx-indicator {
+    display: inline;
+}
+.htmx-request.htmx-indicator {
+    display: inline;
+}

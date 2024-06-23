@@ -12,7 +12,7 @@ app = FastAPI(docs_url="/docs", openapi_url="/api/openapi.json")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://gorillavector.com"],
+    allow_origins=["https://tuskvector.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
