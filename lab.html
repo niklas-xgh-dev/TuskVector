@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuskVector Lab</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>TuskVector Lab 🧪<span class="version">v0.1.0</span></h1>
+        
+        <div class="section">
+            <h2>Welcome to the TuskVector Lab</h2>
+            <p>
+                This is where you can experiment with TuskVector's capabilities.
+                Try out vector operations, test API endpoints, and explore our features.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Embed Text</h2>
+            <p>Use this form to embed text into the database. This vectorized data will be used to enrich LLM queries.</p>
+            <form hx-post="/api/embed_text" 
+                  hx-ext="json-enc"
+                  hx-target="#embed-result" 
+                  hx-swap="innerHTML">
+                <input type="text" name="text" placeholder="Enter your question" required>
+                <button type="submit">Embed Text</button>
+            </form>
+            <div id="embed-result"
+                 hx-swap-oob="true">
+                <span id="embed-id"></span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Query LLM</h2>
+            <p>Ask a question and get an answer enriched with the embedded text.</p>
+            <form hx-post="/api/query" 
+                  hx-ext="json-enc"
+                  hx-target="#query-result" 
+                  hx-swap="innerHTML">
+                <input type="text" name="text" placeholder="Enter your question" required>
+                <button type="submit">Ask Question</button>
+            </form>
+            <div id="query-result"
+                 hx-swap-oob="true">
+                <span id="query-response"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden elements for JSON parsing -->
+    <div id="json-response" hx-swap-oob="true">
+        <span id="embed-id" hx-swap-oob="true" hx-swap="innerHTML"></span>
+        <span id="query-response" hx-swap-oob="true" hx-swap="innerHTML"></span>
+    </div>
+</body>
+</html>

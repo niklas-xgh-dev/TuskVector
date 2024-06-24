@@ -54,7 +54,7 @@ input[type="text"], input[type="email"] {
 }
 button {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;  /* Changed from 20px to 10px */
     padding: 10px 20px;
     background-color: #4990e2;
     color: white;
@@ -79,7 +79,7 @@ button:hover {
 }
 .docs-link {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;  /* Changed from 20px to 10px */
     padding: 10px 20px;
     background-color: #49cc90;
     color: white;
@@ -92,7 +92,7 @@ button:hover {
 }
 .ref-link {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;  /* Changed from 20px to 10px */
     padding: 10px 20px;
     background-color: #303030;
     color: white;
