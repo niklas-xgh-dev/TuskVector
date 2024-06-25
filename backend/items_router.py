@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Form, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from database import get_db, ItemDB, ApiKeyDB
+from database import get_db, ItemDB, ApiKeyDB, get_api_key
 from schemas import ItemCreate, ItemResponse
 import secrets
 from datetime import datetime
@@ -14,7 +14,7 @@ def get_client_ip(request: Request):
     return cf_connecting_ip or request.client.host
 
 @router.get("/items/{item_id}", response_model=ItemResponse)
-def get_item(item_id: int, db: Session = Depends(get_db)):
+def get_item(item_id: int, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
     if item:
         return item
@@ -22,7 +22,7 @@ def get_item(item_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Item not found")
 
 @router.post("/items", response_model=ItemResponse)
-def create_item(item: ItemCreate, db: Session = Depends(get_db)):
+def create_item(item: ItemCreate, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     db_item = ItemDB(**item.dict())
     db.add(db_item)
     db.commit()
@@ -30,7 +30,7 @@ def create_item(item: ItemCreate, db: Session = Depends(get_db)):
     return db_item
 
 @router.delete("/items/{item_id}")
-def delete_item(item_id: int, db: Session = Depends(get_db)):
+def delete_item(item_id: int, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
     if item:
         db.delete(item)

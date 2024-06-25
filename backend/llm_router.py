@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import get_db
+from database import get_db, get_api_key
 from schemas import LLMQueryRequest, LLMQueryResponse, SimilaritySearchRequest, SimilaritySearchResponse
 from openai import OpenAI
 import os
@@ -14,9 +14,9 @@ router = APIRouter()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @router.post("/query", response_model=LLMQueryResponse)
-async def llm_query(query_request: LLMQueryRequest, db: Session = Depends(get_db)):
+async def llm_query(query_request: LLMQueryRequest, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     try:
-        similarity_request = SimilaritySearchRequest(text=query_request.text)
+        similarity_request = SimilaritySearchRequest(text=query_request.text, api_key=api_key)
         similarity_response = await similarity_search(similarity_request, db)
         context = similarity_response.result
 

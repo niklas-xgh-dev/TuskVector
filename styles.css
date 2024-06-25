@@ -112,3 +112,8 @@ button:hover {
 .htmx-request.htmx-indicator {
     display: inline;
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from database import get_db, TextEmbedding
+from database import get_db, TextEmbedding, get_api_key
 from schemas import TextEmbeddingCreate, TextEmbeddingResponse, SimilaritySearchRequest, SimilaritySearchResponse
 from openai import OpenAI
 import os
@@ -14,7 +14,7 @@ router = APIRouter()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @router.post("/embed_text", response_model=TextEmbeddingResponse)
-async def embed_text(text_input: TextEmbeddingCreate, db: Session = Depends(get_db)):
+async def embed_text(text_input: TextEmbeddingCreate, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     try:
         response = client.embeddings.create(
             input=text_input.text,
@@ -41,7 +41,7 @@ async def embed_text(text_input: TextEmbeddingCreate, db: Session = Depends(get_
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 @router.post("/similarity_search", response_model=SimilaritySearchResponse)
-async def similarity_search(search_request: SimilaritySearchRequest, db: Session = Depends(get_db)):
+async def similarity_search(search_request: SimilaritySearchRequest, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     try:
         response = client.embeddings.create(
             input=search_request.text,

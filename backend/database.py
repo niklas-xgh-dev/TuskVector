@@ -1,9 +1,12 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func, Text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 import os
 from dotenv import load_dotenv
 from pgvector.sqlalchemy import Vector
+from fastapi import Depends, HTTPException
+from fastapi.security import APIKeyHeader
+from datetime import datetime
 
 load_dotenv()
 
@@ -54,3 +57,18 @@ def get_db():
         yield db
     finally:
         db.close()
+
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+def get_api_key(api_key: str = Depends(api_key_header), db: Session = Depends(get_db)):
+    if api_key is None:
+        raise HTTPException(status_code=401, detail="API Key is missing")
+    
+    api_key_db = db.query(ApiKeyDB).filter(ApiKeyDB.key == api_key).first()
+    if api_key_db is None:
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+    
+    api_key_db.last_used_at = datetime.utcnow()
+    db.commit()
+    
+    return api_key

@@ -21,35 +21,42 @@
         </div>
 
         <div class="section">
+            <h2>API Key</h2>
+            <input type="text" id="api-key" placeholder="Enter your API key">
+        </div>
+
+        <div class="section">
             <h2>Add Facts</h2>
-            <p>Use this form to embed facts into the Tuskvector DB. This vectorized data will be used to enrich LLM queries.</p>
             <form hx-post="/api/embed_text" 
                   hx-ext="json-enc"
                   hx-target="#embed-result" 
-                  hx-swap="innerHTML">
+                  hx-swap="innerHTML"
+                  hx-headers='js:{
+                      "X-API-Key": document.getElementById("api-key").value
+                  }'
+                  hx-indicator="#embed-loader">
                 <input type="text" name="text" placeholder="Make LLM Smarter" required>
                 <button type="submit">Embed Text</button>
+                <div id="embed-loader" class="htmx-indicator">Loading...</div>
             </form>
-            <div id="embed-result"
-                 hx-swap-oob="true">
-                <span id="embed-id"></span>
-            </div>
+            <div id="embed-result"></div>
         </div>
 
         <div class="section">
             <h2>Query LLM</h2>
-            <p>Ask a question and get an answer enriched with the embedded text.</p>
             <form hx-post="/api/query" 
                   hx-ext="json-enc"
                   hx-target="#query-result" 
-                  hx-swap="innerHTML">
+                  hx-swap="innerHTML"
+                  hx-headers='js:{
+                      "X-API-Key": document.getElementById("api-key").value
+                  }'
+                  hx-indicator="#query-loader">
                 <input type="text" name="text" placeholder="Ask LLM" required>
                 <button type="submit">Ask Question</button>
+                <div id="query-loader" class="htmx-indicator">Loading...</div>
             </form>
-            <div id="query-result"
-                 hx-swap-oob="true">
-                <span id="query-response"></span>
-            </div>
+            <div id="query-result"></div>
         </div>
 
         <div class="section">
@@ -62,11 +69,19 @@
         </div>
     </div>
 
-
     <!-- Hidden elements for JSON parsing -->
     <div id="json-response" hx-swap-oob="true">
         <span id="embed-id" hx-swap-oob="true" hx-swap="innerHTML"></span>
         <span id="query-response" hx-swap-oob="true" hx-swap="innerHTML"></span>
     </div>
+
+    <script>
+        htmx.on("htmx:responseError", function(event) {
+            var targetId = event.detail.target.id;
+            var errorMessage = event.detail.xhr.response;
+            var errorDiv = document.getElementById(targetId);
+            errorDiv.innerHTML = '<p class="error-message">' + errorMessage + '</p>';
+        });
+    </script>
 </body>
 </html>
