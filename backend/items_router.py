@@ -13,7 +13,7 @@ def get_client_ip(request: Request):
     cf_connecting_ip = request.headers.get("CF-Connecting-IP")
     return cf_connecting_ip or request.client.host
 
-@router.get("/items/{item_id}", response_model=ItemResponse)
+@router.get("/items/{item_id}", response_model=ItemResponse, include_in_schema=False)
 def get_item(item_id: int, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
     if item:
@@ -21,7 +21,7 @@ def get_item(item_id: int, db: Session = Depends(get_db), api_key: str = Depends
     else:
         raise HTTPException(status_code=404, detail="Item not found")
 
-@router.post("/items", response_model=ItemResponse)
+@router.post("/items", response_model=ItemResponse, include_in_schema=False)
 def create_item(item: ItemCreate, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     db_item = ItemDB(**item.dict())
     db.add(db_item)
@@ -29,7 +29,7 @@ def create_item(item: ItemCreate, db: Session = Depends(get_db), api_key: str = 
     db.refresh(db_item)
     return db_item
 
-@router.delete("/items/{item_id}")
+@router.delete("/items/{item_id}", include_in_schema=False)
 def delete_item(item_id: int, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
     if item:
