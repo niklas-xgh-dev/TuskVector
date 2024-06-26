@@ -117,3 +117,20 @@ button:hover {
     color: red;
     font-weight: bold;
 }
+.api-key-input {
+    margin-top: 20px;
+}
+
+.api-key-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.api-key-input input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

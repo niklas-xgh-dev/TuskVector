@@ -21,10 +21,21 @@
         </div>
 
         <div class="section">
-            <h2>API Key</h2>
-            <input type="text" id="api-key" placeholder="Enter your API key">
+            <h2>Get Your API Key</h2>
+            <p>To start using the TuskVector API, you'll need an API key. Register below to get your key instantly!</p>
+            <form hx-post="/api/generate_api_key" 
+                  hx-target="#api-key-result" 
+                  hx-swap="innerHTML">
+                <input type="email" name="email" placeholder="Your Email" required>
+                <button type="submit">Get New API Key</button>
+            </form>
+            <div id="api-key-result"></div>
+            <div class="api-key-input" style="margin-top: 20px;">
+                <label for="api-key">Use API Key:</label>
+                <input type="text" id="api-key" placeholder="Or enter your existing API key here (if you request a new one, this field gets auto populated)">
+            </div>
         </div>
-
+        
         <div class="section">
             <h2>Add Facts</h2>
             <form hx-post="/api/embed_text" 
@@ -81,6 +92,17 @@
             var errorMessage = event.detail.xhr.response;
             var errorDiv = document.getElementById(targetId);
             errorDiv.innerHTML = '<p class="error-message">' + errorMessage + '</p>';
+        });
+
+        // New script to handle API key generation and input
+        htmx.on("htmx:afterSettle", function(event) {
+            if (event.detail.target.id === "api-key-result") {
+                var apiKeySpan = event.detail.target.querySelector(".api-key");
+                if (apiKeySpan) {
+                    var apiKey = apiKeySpan.textContent;
+                    document.getElementById("api-key").value = apiKey;
+                }
+            }
         });
     </script>
 </body>
