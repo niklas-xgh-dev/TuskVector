@@ -1,15 +1,15 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/pgvector-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="pgvector">
-  <img src="https://img.shields.io/badge/SQLAlchemy%20⚗️-2B5B84?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
+  <img src="https://img.shields.io/badge/OpenAI%20ada2-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI ada2">
   <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI">
-  <a href="https://docs.pydantic.dev/latest/contributing/#badges"><img src="https://img.shields.io/endpoint?style=for-the-badge&url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json" alt="Pydantic v2"></a>
+  <img src="https://img.shields.io/badge/HNSW-FF6B6B?style=for-the-badge&logo=graphql&logoColor=white" alt="HNSW">
   <img src="https://img.shields.io/badge/htmx-%23000000.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBkPSJNMTcwLjQgODUuNGwtNDIuNCA0Mi40LTQyLjQtNDIuNEw2NCA5Ni41bDQyLjQgNDIuNC00Mi40IDQyLjQgMjEuMiAyMS4yIDQyLjQtNDIuNCA0Mi40IDQyLjQgMjEuMi0yMS4yLTQyLjQtNDIuNCA0Mi40LTQyLjR6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="HTMX">
 </div>
 
 # TuskVector - API Platform 🐘
 
-TuskVector is an API platform built to handle your data organization and retrieval needs. Why "TuskVector"? Well, just like an elephant's tusk, it's strong, reliable, and gets the job done. Plus, it now remembers things almost as well as an elephant. Almost. 📊🧠
+Where elephant memory meets modern language models. This API framework transforms your data into 1536D vectors, then employs HNSW indexing for efficient information retrieval. Built on pgvector, it enhances your database with search capabilities before plugging it into further queries. Why elephant tusks? They're nature's data pointers — precise, durable, and remarkably effective.
 
 ## Tech Stack 🛠️
 
@@ -18,32 +18,40 @@ TuskVector is powered by a mix of technologies:
 - 🐍 Python for the backend (no surprises there)
 - 🐘 pgvector for Postgre DB vector functionality (elephants and vectors, get it?)
 - ⚡ FastAPI for building APIs (gotta go fast!)
-- 🛡️ Pydantic for data validation (because who doesn't love strict typing?)
-- 🧪 SQLAlchemy for database integration (SQL is still cool, right?)
+- 🧬 OpenAI's ada2 for text embeddings
+- 🔍 HNSW for fast approximate nearest neighbor search
 - 🌑 HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
-- 🤖 OpenAI for embeddings and LLM queries (because why think when AI can do it for you?)
+- 🧠 GPT 4o for LLM queries 
 
-## Current Features 🎉
-TuskVector now offers a bunch of API endpoints to manage your items and queries:
+### 🚀 Key Features
 
-- 🔍 Get an item by its ID using GET /api/items/{item_id}
-- ➕ Create a new item with POST /api/items
-- 🗑️ Delete an item by its ID using DELETE /api/items/{item_id}
-- 📥 Embed and store facts with POST /api/embed_text
-- 🔎 Find similar facts using POST /api/similarity_search
-- 🧠 Query an LLM with facts as context using POST /api/query
+1. **Vector Embedding (POST `/api/embed_text`)**
+   - Utilizes OpenAI's text-embedding-ada-002 model
+   - Generates 1536-dimensional embeddings
+   - Automatically stores embeddings in pgvector-enabled PostgreSQL database
 
-We've gone from "nothing groundbreaking" to "kinda cool", so that's progress, right?
+2. **Similarity Search (POST `/api/similarity_search`)**
+   - Implements cosine similarity metric
+   - Utilizes HNSW (Hierarchical Navigable Small World) index for approximate nearest neighbor search
+   - Configurable search parameters:
+     - `ef_search`: Controls the trade-off between search speed and accuracy (default: 100)
+     - Distance threshold: Filters results based on maximum allowed cosine distance
 
-## Vector Magic ✨
+3. **Context-Aware LLM Queries (POST `/api/query`)**
+   - Integrates with OpenAI's GPT models
+   - Enhances LLM responses with relevant context from the vector database
+   - Implements a two-stage retrieval process:
+     1. Vector similarity search to find relevant facts
+     2. LLM query augmented with retrieved context
 
-Remember when we said we'd integrate vector database functionality? Well, we actually did it! TuskVector now uses pgvector for fast similarity searches. It's like finding a needle in a haystack, if the needle was a piece of text and the haystack was your database. 🧭
+### 🔧 Our Configuration Options
 
-## Getting Started 🚀
+- `HNSW_M`: Maximum number of connections per layer in HNSW index (we went with 16)
+- `HNSW_EF_CONSTRUCTION`: Size of the dynamic candidate list for constructing the HNSW graph (we went with 64)
+- `MAX_DISTANCE`: Cosine distance threshold for similarity search (we went with 0.3)
 
-If you want to give TuskVector a spin, check out the Swagger API documentation under /docs path. It should tell you everything you need to know about how to use the platform and its features. Or you could just guess and hope for the best. Your choice. 📚
+### 📊 Performance Metrics
 
-## Future Plans 🔮
-
-The team behind TuskVector is thinking about adding more features. They're not sure what yet, but we're not holding our breath. 😉
-May your queries be fast and your embeddings be meaningful. 💻🐘
+- Embedding generation: ~500ms per text input (depends on input length and API latency)
+- Similarity search: Sub-second response times for databases with up to 1 million vectors (with proper indexing)
+- Query response time: Varies based on LLM model and context length, typically 2-5 seconds
