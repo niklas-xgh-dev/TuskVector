@@ -1,9 +1,9 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/pgvector-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="pgvector">
+  <img src="https://img.shields.io/badge/HNSW-FF6B6B?style=for-the-badge&logo=graphql&logoColor=white" alt="HNSW">
   <img src="https://img.shields.io/badge/OpenAI%20ada2-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI ada2">
   <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI">
-  <img src="https://img.shields.io/badge/HNSW-FF6B6B?style=for-the-badge&logo=graphql&logoColor=white" alt="HNSW">
   <img src="https://img.shields.io/badge/htmx-%23000000.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBkPSJNMTcwLjQgODUuNGwtNDIuNCA0Mi40LTQyLjQtNDIuNEw2NCA5Ni41bDQyLjQgNDIuNC00Mi40IDQyLjQgMjEuMiAyMS4yIDQyLjQtNDIuNCA0Mi40IDQyLjQgMjEuMi0yMS4yLTQyLjQtNDIuNCA0Mi40LTQyLjR6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="HTMX">
 </div>
 
@@ -17,11 +17,11 @@ TuskVector is powered by a mix of technologies:
 
 - 🐍 Python for the backend (no surprises there)
 - 🐘 pgvector for Postgre DB vector functionality (elephants and vectors, get it?)
-- ⚡ FastAPI for building APIs (gotta go fast!)
-- 🧬 OpenAI's ada2 for text embeddings
 - 🔍 HNSW for fast approximate nearest neighbor search
-- 🌑 HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
+- 🧬 OpenAI's ada2 for text embeddings
 - 🧠 GPT 4o for LLM queries 
+- ⚡ FastAPI for building APIs (gotta go fast!)
+- 🌑 HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
 
 ### 🚀 Key Features
 
