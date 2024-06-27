@@ -33,7 +33,7 @@
         </div>
         
         <div class="section">
-            <h2>Add Facts</h2>
+            <h2>Add Vectors ⇑ to the RAG</h2>
             <form hx-post="/api/embed_text" 
                   hx-ext="json-enc"
                   hx-target="#embed-result" 
@@ -50,7 +50,7 @@
         </div>
 
         <div class="section">
-            <h2>Query LLM</h2>
+            <h2>Query LLM based on RAG Data</h2>
             <form hx-post="/api/query" 
                   hx-ext="json-enc"
                   hx-target="#query-result" 
@@ -90,13 +90,21 @@
             errorDiv.innerHTML = '<p class="error-message">' + errorMessage + '</p>';
         });
 
-        // New script to handle API key generation and input
         htmx.on("htmx:afterSettle", function(event) {
-            if (event.detail.target.id === "api-key-result") {
+        var targetId = event.detail.target.id;
+        
+            if (targetId === "api-key-result") {
                 var apiKeySpan = event.detail.target.querySelector(".api-key");
                 if (apiKeySpan) {
-                    var apiKey = apiKeySpan.textContent;
-                    document.getElementById("api-key").value = apiKey;
+                    document.getElementById("api-key").value = apiKeySpan.textContent;
+                }
+            } else if (targetId === "embed-result" || targetId === "query-result") {
+                try {
+                    var response = JSON.parse(event.detail.target.innerHTML);
+                    var content = response.text || response.response || response.detail || "Unexpected response format";
+                    event.detail.target.innerHTML = '<p>' + content + '</p>';
+                } catch (e) {
+                    // If parsing fails, leave the content as is (it might be an error message)
                 }
             }
         });
