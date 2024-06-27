@@ -9,7 +9,7 @@
 
 # TuskVector - API Platform 🐘
 
-Where elephant memory meets modern language models. This API framework transforms your data into 1536D vectors, then employs HNSW indexing for efficient information retrieval. Built on pgvector, it enhances your database with search capabilities before plugging it into further queries. Why elephant tusks? They're nature's data pointers — precise, durable, and remarkably effective.
+Where elephant memory meets modern language models. This API framework transforms your data into 1536D vectors, then employs HNSW indexing for efficient information retrieval. Built on pgvector, it enhances your database with search capabilities before plugging it into further queries.
 
 ## Tech Stack 🛠️
 
