@@ -9,7 +9,7 @@
 
 # TuskVector - API Platform 🐘
 
-Where elephant memory meets modern language models. This API framework transforms your data into 1536D vectors, then employs HNSW indexing for efficient information retrieval. Built on pgvector, it enhances your database with search capabilities before plugging it into further queries.
+Where elephant memory meets modern language models. This API framework transforms your data into 1536D vectors, then employs HNSW indexing for efficient information retrieval. Built on pgvector, it enhances your database with search capabilities before plugging it into further queries. Come check it out on https://tuskvector.com
 
 ## Tech Stack 🛠️
 
@@ -23,7 +23,7 @@ TuskVector is powered by a mix of technologies:
 - ⚡ FastAPI for building APIs (gotta go fast!)
 - 🌑 HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
 
-### 🚀 Key Features
+### 🚀 Key (API) Features - also found on https://tuskvector.com/docs
 
 1. **Vector Embedding (POST `/api/embed_text`)**
    - Utilizes OpenAI's text-embedding-ada-002 model

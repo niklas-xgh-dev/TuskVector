@@ -21,19 +21,21 @@
             <p>To start using the TuskVector API, you'll need an API key. Register below to get your key instantly!</p>
             <form hx-post="/api/generate_api_key" 
                   hx-target="#api-key-result" 
-                  hx-swap="innerHTML">
+                  hx-swap="innerHTML"
+                  hx-indicator="#api-key-loader">
                 <input type="email" name="email" placeholder="Your Email" required>
                 <button type="submit">Get New API Key</button>
+                <div id="api-key-loader" class="htmx-indicator">Loading...</div>
             </form>
             <div id="api-key-result"></div>
             <div class="api-key-input" style="margin-top: 20px;">
                 <label for="api-key">Use API Key:</label>
-                <input type="text" id="api-key" placeholder="Or enter your existing API key here (if you request a new one, this field gets auto populated)">
+                <input type="text" id="api-key" placeholder="Enter your API Key here">
             </div>
         </div>
         
         <div class="section">
-            <h2>Add Vectors ⇑ to the RAG</h2>
+            <h2>Add Vectors ⇑ to the RAG Data</h2>
             <form hx-post="/api/embed_text" 
                   hx-ext="json-enc"
                   hx-target="#embed-result" 
@@ -42,7 +44,7 @@
                       "X-API-Key": document.getElementById("api-key").value
                   }'
                   hx-indicator="#embed-loader">
-                <input type="text" name="text" placeholder="Make LLM Smarter" required>
+                <input type="text" name="text" placeholder="Make LLM Smarter (e.g. Elephant tusks can weigh up to 90kg)" required>
                 <button type="submit">Embed Text</button>
                 <div id="embed-loader" class="htmx-indicator">Loading...</div>
             </form>
@@ -59,7 +61,7 @@
                       "X-API-Key": document.getElementById("api-key").value
                   }'
                   hx-indicator="#query-loader">
-                <input type="text" name="text" placeholder="Ask LLM" required>
+                <input type="text" name="text" placeholder="Ask LLM (e.g. How much do elephant tusks weigh?)" required>
                 <button type="submit">Ask Question</button>
                 <div id="query-loader" class="htmx-indicator">Loading...</div>
             </form>
@@ -97,6 +99,15 @@
                 try {
                     var response = JSON.parse(event.detail.target.innerHTML);
                     var content = response.text || response.response || response.detail || "Unexpected response format";
+
+                    if (targetId === "embed-result") {
+                        content = "Added Vector: " + content;
+                    }
+
+                    if (targetId === "query-result") {
+                        content = "LLM Response: " + content;
+                    }
+
                     event.detail.target.innerHTML = '<p>' + content + '</p>';
                 } catch (e) {
                     // If parsing fails, leave the content as is (it might be an error message)
