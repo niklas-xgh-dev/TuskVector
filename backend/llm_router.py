@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db, get_api_key
-from schemas import LLMQueryRequest, LLMQueryResponse, SimilaritySearchRequest, SimilaritySearchResponse
+from schemas import LLMQueryRequest, LLMQueryResponse, SimilaritySearchRequest
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
@@ -23,7 +23,7 @@ async def llm_query(query_request: LLMQueryRequest, db: Session = Depends(get_db
         context = similarity_response.result
 
         messages = [
-            {"role": "system", "content": f"You are a helpful assistant. Use the following facts to inform your responses, but only if they match the context of the user prompt:\n\n{context}"},
+            {"role": "system", "content": f"You are a helpful assistant. Use the following facts to inform your responses, but use the facts only if they match the context of the user prompt, if they don't - use your generic knowledge:\n\n{context}"},
             {"role": "user", "content": query_request.text}
         ]
 

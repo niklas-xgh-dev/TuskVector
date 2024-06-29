@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from database import get_db, TextEmbedding, get_api_key
+from database import get_db, get_api_key
 from rate_limiter import rate_limit
 from schemas import TextEmbeddingCreate, TextEmbeddingResponse, SimilaritySearchRequest, SimilaritySearchResponse
 from openai import OpenAI
@@ -70,7 +70,7 @@ async def similarity_search(search_request: SimilaritySearchRequest, db: Session
         results = db.execute(query, {"search_embedding": search_embedding}).fetchall()
 
         # Filter results that are not exceeding a minimal distance between the search and result vector
-        max_distance = 0.3
+        max_distance = 0.1
         similar_texts = [result.text for result in results if result.distance < max_distance]
 
         if not similar_texts:

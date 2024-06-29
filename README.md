@@ -34,7 +34,7 @@ TuskVector is powered by a mix of technologies:
    - Implements cosine similarity metric
    - Utilizes HNSW (Hierarchical Navigable Small World) index for approximate nearest neighbor search
    - Configurable search parameters:
-     - `ef_search`: Controls the trade-off between search speed and accuracy (default: 100)
+     - `ef_search`: Controls the trade-off between search speed and accuracy
      - Distance threshold: Filters results based on maximum allowed cosine distance
 
 3. **Context-Aware LLM Queries (POST `/api/query`)**
@@ -48,10 +48,10 @@ TuskVector is powered by a mix of technologies:
 
 - `HNSW_M`: Maximum number of connections per layer in HNSW index (we went with 16)
 - `HNSW_EF_CONSTRUCTION`: Size of the dynamic candidate list for constructing the HNSW graph (we went with 64)
-- `MAX_DISTANCE`: Cosine distance threshold for similarity search (we went with 0.3)
+- `MAX_DISTANCE`: Cosine distance threshold for similarity search (we went with 0.1)
 
 ### 📊 Performance Metrics
 
 - Embedding generation: ~500ms per text input (depends on input length and API latency)
 - Similarity search: Sub-second response times for databases with up to 1 million vectors (with proper indexing)
-- Query response time: Varies based on LLM model and context length, typically 2-5 seconds
+- Query response time: Varies based on LLM model (right now we use GPT 4o) and context length, typically 2-4 seconds
