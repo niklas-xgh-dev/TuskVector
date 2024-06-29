@@ -6,6 +6,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from embeddings_router import similarity_search
+from rate_limiter import rate_limit
 
 load_dotenv()
 
@@ -14,6 +15,7 @@ router = APIRouter()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @router.post("/query", response_model=LLMQueryResponse)
+@rate_limit(limit=10, period=3600)
 async def llm_query(query_request: LLMQueryRequest, db: Session = Depends(get_db), api_key: str = Depends(get_api_key)):
     try:
         similarity_request = SimilaritySearchRequest(text=query_request.text, api_key=api_key)

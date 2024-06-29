@@ -80,8 +80,10 @@ def send_api_key_email(recipient: str, api_key: str):
     <html>
       <body>
         <h2>Your TuskVector 🐘 API Key</h2>
-        <p>Your API Key is: <strong>{api_key}</strong></p>
+        <p><strong>{api_key}</strong></p>
+        <p></p>
         <p>Please keep this key secure and do not share it publicly.</p>
+        <p>Your request limit was set to 10 requests per hour per endpoint</p>
         <p>If you have any questions or concerns, please contact our support team.</p>
       </body>
     </html>
