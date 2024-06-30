@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from database import get_db, ApiKeyDB
+from .database import get_db, ApiKeyDB
 import secrets
 from datetime import datetime
 import smtplib

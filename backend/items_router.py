@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import get_db, ItemDB, get_api_key
-from schemas import ItemCreate, ItemResponse
-from rate_limiter import rate_limit
+from .database import get_db, ItemDB, get_api_key
+from .schemas import ItemCreate, ItemResponse
+from .rate_limiter import rate_limit
 
 router = APIRouter()
 

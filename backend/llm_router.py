@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import get_db, get_api_key
-from schemas import LLMQueryRequest, LLMQueryResponse, SimilaritySearchRequest
+from .database import get_db, get_api_key
+from .schemas import LLMQueryRequest, LLMQueryResponse, SimilaritySearchRequest
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from embeddings_router import similarity_search
-from rate_limiter import rate_limit
+from .embeddings_router import similarity_search
+from .rate_limiter import rate_limit
 
 load_dotenv()
 

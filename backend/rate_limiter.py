@@ -2,7 +2,7 @@ from collections import defaultdict
 import time
 from fastapi import HTTPException, Depends
 from functools import wraps
-from database import get_api_key
+from .database import get_api_key
 
 class RateLimiter:
     def __init__(self):
