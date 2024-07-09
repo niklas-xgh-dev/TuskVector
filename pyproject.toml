@@ -23,4 +23,5 @@ dependencies = [
 dev = ["pytest"]
 
 [tool.setuptools]
+package-dir = {"tuskvector" = "backend"}
 packages = ["tuskvector"]
