@@ -1,12 +1,8 @@
-[
-build-system
-]
+[build-system]
 requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[
-project
-]
+[project]
 name = "tuskvector"
 version = "1.0.1"
 description = "TuskVector API Platform"
@@ -23,12 +19,8 @@ dependencies = [
     "pydantic",
 ]
 
-[
-project.optional-dependencies
-]
+[project.optional-dependencies]
 dev = ["pytest"]
 
-[
-tool.setuptools
-]
+[tool.setuptools]
 packages = ["tuskvector"]
