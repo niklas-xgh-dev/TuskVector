@@ -10,7 +10,7 @@ project
 name = "tuskvector"
 version = "1.0.1"
 description = "TuskVector API Platform"
-authors = [{name = "Niklas", email = "techstag@outlook.com"}]
+authors = [{name = "Niklas", email = "api.tuskvector@gmail.com"}]
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.8"
