@@ -16,6 +16,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.x'
+    - name: Debug directory contents
+      run: |
+        pwd
+        ls -la
+        cat pyproject.toml
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
