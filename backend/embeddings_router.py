@@ -70,11 +70,11 @@ async def similarity_search(search_request: SimilaritySearchRequest, db: Session
         results = db.execute(query, {"search_embedding": search_embedding}).fetchall()
 
         # Filter results that are not exceeding a minimal distance between the search and result vector
-        max_distance = 0.1
-        similar_texts = [result.text for result in results if result.distance < max_distance]
+        #max_distance = 0.1
+        similar_texts = [result.text for result in results ] #if result.distance < max_distance
 
-        if not similar_texts:
-            return SimilaritySearchResponse(result="No sufficiently similar facts/texts found.")
+        #if not similar_texts:
+        #    return SimilaritySearchResponse(result="No sufficiently similar facts/texts found.")
 
         combined_text = "\n\n[FACT]\n".join(similar_texts)
         combined_text = f"[FACT]\n{combined_text}\n[/FACT]"
