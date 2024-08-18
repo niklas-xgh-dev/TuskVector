@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from .database import get_db, get_api_key
-from .rate_limiter import rate_limit
-from .schemas import TextEmbeddingCreate, TextEmbeddingResponse, SimilaritySearchRequest, SimilaritySearchResponse
+from database import get_db, get_api_key
+from rate_limiter import rate_limit
+from schemas import TextEmbeddingCreate, TextEmbeddingResponse, SimilaritySearchRequest, SimilaritySearchResponse
 from openai import OpenAI
 import os
 from dotenv import load_dotenv

@@ -30,3 +30,7 @@ unit_tests/__pycache__/
 unit_tests/.Python
 unit_tests/.DS_Store
 unit_tests/.cache
+
+# PM2 configs
+ecosystem.config.js
+start_server.sh
