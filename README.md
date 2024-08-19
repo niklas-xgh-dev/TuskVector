@@ -23,6 +23,13 @@ TuskVector is built with:
 - FastAPI for building APIs
 - HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
 
+### Setup
+
+It's packaged and uploaded to PyPI! - check out https://pypi.org/project/tuskvector/ and/or use
+```
+pip install tuskvector
+```
+
 ### API Endpoints - also found on https://tuskvector.com/docs
 
 1. **Vector Embedding (POST `/api/embed_text`)**
