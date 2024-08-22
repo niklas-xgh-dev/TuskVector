@@ -11,19 +11,26 @@
 
 This API framework first transforms your data in 1536D vectors (as RAGs do), then employs HNSW indexing for efficient information retrieval (again, as RAGs do) using pgvector. In short - it enhances your database with search capabilities before plugging it into further queries. Check it out on https://tuskvector.com
 
-## Tech Stack 🛠️
+## Tech Stack 
 
-TuskVector built with:
+TuskVector is built with:
 
-- 🐍 Python for the backend (no surprises there)
-- 🐘 pgvector for Postgre DB vector functionality (elephants and vectors, get it?)
-- 🔍 HNSW for fast approximate nearest neighbor search
-- 🧬 OpenAI's ada2 for text embeddings
-- 🧠 GPT 4o for LLM queries 
-- ⚡ FastAPI for building APIs
-- 🌑 HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
+- Python for the backend (no surprises there)
+- pgvector for Postgre DB vector functionality (elephants and vectors, get it?)
+- HNSW for fast approximate nearest neighbor search
+- OpenAI's ada2 for text embeddings
+- GPT 4o for LLM queries 
+- FastAPI for building APIs
+- HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
 
-### 🚀 Key (API) Features - also found on https://tuskvector.com/docs
+### Setup
+
+It's packaged and uploaded to PyPI! - check out https://pypi.org/project/tuskvector/ and/or use
+```
+pip install tuskvector
+```
+
+### API Endpoints - also found on https://tuskvector.com/docs
 
 1. **Vector Embedding (POST `/api/embed_text`)**
    - Utilizes OpenAI's text-embedding-ada-002 model
@@ -44,14 +51,8 @@ TuskVector built with:
      1. Vector similarity search to find relevant facts
      2. LLM query augmented with retrieved context
 
-### 🔧 Our Configuration Options
+### Configuration Options
 
 - `HNSW_M`: Maximum number of connections per layer in HNSW index (we went with 16)
 - `HNSW_EF_CONSTRUCTION`: Size of the dynamic candidate list for constructing the HNSW graph (we went with 64)
 - `MAX_DISTANCE`: Cosine distance threshold for similarity search (we went with 0.1)
-
-### 📊 Performance Metrics
-
-- Embedding generation: ~500ms per text input (depends on input length and API latency)
-- Similarity search: Sub-second response times for databases with up to 1 million vectors (with proper indexing)
-- Query response time: Varies based on LLM model (right now we use GPT 4o) and context length, typically 2-4 seconds
