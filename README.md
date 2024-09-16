@@ -15,13 +15,11 @@ This API framework first transforms your data in 1536D vectors (as RAGs do), the
 
 TuskVector is built with:
 
-- Python for the backend (no surprises there)
-- pgvector for Postgre DB vector functionality (elephants and vectors, get it?)
+- pgvector for Postgre DB vector functionality
 - HNSW for fast approximate nearest neighbor search
 - OpenAI's ada2 for text embeddings
-- GPT 4o for LLM queries 
-- FastAPI for building APIs
-- HTMX as frontend to dodge JavaScript (because apparently, that's a thing now)
+- GPT 4o
+- FastAPI 
 
 
 ### API Endpoints - also found on https://tuskvector.com/docs
