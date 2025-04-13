@@ -34,3 +34,4 @@ unit_tests/.cache
 # PM2 configs
 ecosystem.config.js
 start_server.sh
+.venv/*
