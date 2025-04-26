@@ -35,3 +35,4 @@ unit_tests/.cache
 ecosystem.config.js
 start_server.sh
 .venv/*
+tuskvector.log
