@@ -49,6 +49,6 @@ if __name__ == "__main__":
 
     uvicorn.run(
         app,
-        host="127.0.0.1",           # or "0.0.0.0" to expose externally
-        port=8000,
+        host="127.0.0.1",
+        port=8080,
     )
