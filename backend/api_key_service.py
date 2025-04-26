@@ -16,7 +16,7 @@ def get_client_ip(request: Request):
     cf_connecting_ip = request.headers.get("CF-Connecting-IP")
     return cf_connecting_ip or request.client.host
     
-@router.post("/generate_api_key", response_class=HTMLResponse, include_in_schema=False)
+@router.post("/generate_api_key", response_class=HTMLResponse)
 async def generate_api_key(
     request: Request,
     email: str = Form(...),

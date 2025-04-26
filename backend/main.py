@@ -26,11 +26,29 @@ app.include_router(embeddings_router, prefix="/api")
 app.include_router(llm_router, prefix="/api")
 app.include_router(api_key_service, prefix="/api")
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir  = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
+frontend_dir = os.path.join(project_root, "frontend")
 
-app.mount("/", StaticFiles(directory=project_root), name="static")
+app.mount(
+    "/static",
+    StaticFiles(directory=frontend_dir),
+    name="static"
+)
 
 @app.get("/", include_in_schema=False)
 async def read_index():
-    return FileResponse(os.path.join(project_root, 'index.html'))
+    return FileResponse(os.path.join(frontend_dir, "index.html"))
+
+@app.get("/lab", include_in_schema=False)
+async def read_lab():
+    return FileResponse(os.path.join(frontend_dir, "lab.html"))
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(
+        app,
+        host="127.0.0.1",           # or "0.0.0.0" to expose externally
+        port=8000,
+    )
